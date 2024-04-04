@@ -29,7 +29,7 @@ SET FILES NIO TRUE
 SET FILES NIO SIZE 256
 SET FILES LOG TRUE
 SET FILES LOG SIZE 50
-SET FILES CHECK 274
+SET FILES CHECK 1351
 SET DATABASE COLLATION "SQL_TEXT" PAD SPACE
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
 ALTER USER SA SET LOCAL TRUE
@@ -58,3 +58,6 @@ INSERT INTO "flyway_schema_history" VALUES(1,'1','create-table-events','SQL','V1
 INSERT INTO "flyway_schema_history" VALUES(2,'2','create-table-attendees','SQL','V2__create-table-attendees.sql',1525337289,'SA','2024-04-03 18:39:13.338694',11,'1')
 INSERT INTO "flyway_schema_history" VALUES(3,'3','create-table-checkins','SQL','V3__create-table-checkins.sql',-1416630764,'SA','2024-04-03 18:39:13.349161',1,'1')
 INSERT INTO "flyway_schema_history" VALUES(4,'4','create-indexes','SQL','V4__create-indexes.sql',553901455,'SA','2024-04-03 18:39:13.360697',1,'1')
+INSERT INTO EVENTS VALUES('8ad630b2-223b-4a28-9886-7811d2661cb2','Igreja','Venha falar com Deus','igreja',25)
+INSERT INTO EVENTS VALUES('f822e7e2-ced7-4ae8-8428-ab6e9180fe66','Pagode do Luiz','Se divertir, comer e beber de gra\u00e7a','pagode-do-luiz',50)
+INSERT INTO ATTENDEES VALUES('f822e7e2-ced7-4ae8-8428-ab6e9180fe66','Mariana Silva','marianasilva@gmail.com','8ad630b2-223b-4a28-9886-7811d2661cb2',NULL)
