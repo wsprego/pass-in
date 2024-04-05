@@ -1,5 +1,7 @@
 package com.wsprego.passin.controllers;
 
+import com.wsprego.passin.dto.attendee.AttendeeIdDTO;
+import com.wsprego.passin.dto.attendee.AttendeeRequestDTO;
 import com.wsprego.passin.dto.attendee.AttendeesListResponseDTO;
 import com.wsprego.passin.dto.eventDto.EventIdDTO;
 import com.wsprego.passin.dto.eventDto.EventRequestDTO;
@@ -36,8 +38,19 @@ public class EventController {
 
     @GetMapping("/attendees/{eventId}")
     public ResponseEntity<AttendeesListResponseDTO> getEventAttendees(@PathVariable String eventId) {
+
         AttendeesListResponseDTO attendeesListResponse = this.attendeeService.getEventAttendee(eventId);
+
         return ResponseEntity.ok(attendeesListResponse);
+    }
+
+    @PostMapping("/{eventId}/attendees")
+    public ResponseEntity<AttendeeIdDTO> registerParticipant(@PathVariable String eventId , @RequestBody AttendeeRequestDTO body, UriComponentsBuilder uriComponentsBuilder) {
+        AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendeeOnEvent(eventId, body);
+
+        var uri = uriComponentsBuilder.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeIdDTO.attendeeId()).toUri();
+
+        return ResponseEntity.created(uri).body(attendeeIdDTO);
     }
 
 }
